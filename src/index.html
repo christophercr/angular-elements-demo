@@ -3,12 +3,38 @@
 <head>
   <meta charset="utf-8">
   <title>AngularElementsDemo</title>
-  <base href="/">
+  <!--<base href="/">-->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--<script type="text/javascript">-->
+  <!--if (!Array.from) {-->
+  <!--Array.from = function (object) {-->
+  <!--'use strict';-->
+  <!--return [].slice.call(object);-->
+  <!--};-->
+  <!--}-->
+  <!--</script>-->
+
+  <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <!--<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>-->
+  <!--<script src="../node_modules/@webcomponents/shadydom/shadydom.min.js"></script>-->
+
+  <script src="carousel-component.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+<custom-carousel id="carousel"
+                 images="['./assets/images/img1.png', './assets/images/img2.png', './assets/images/img3.png', './assets/images/img4.png', './assets/images/img5.png']">
+</custom-carousel>
+
+<script type="text/javascript">
+  var carousel = document.getElementById("carousel");
+
+  carousel.addEventListener("imageChanged", function (event) {
+    // component outputs are dispatched as HTML Custom Events, with the name of the custom event matching the output name
+    // the emitted data will be stored on the event’s detail property.
+    console.log("----- imageChanged:", event.detail);
+  })
+</script>
 </body>
 </html>
